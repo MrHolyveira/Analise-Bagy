@@ -8,4 +8,4 @@ Atualmente minha linguagem principal para análise de dados é R, porém minha l
 
 O arquivo  [teste_dados_ecommerce.csv](teste_dados_ecommerce.csv) contém alguns registros problemáticos que fiz um pequeno trabalho de limpeza, embora não necessáriamente suficiente para as análises propostas (ressalto novamente a importância de uma comunicação do analista de dados com os responsáveis por coleta e manutenção dos dados, bem como informações detalhadas de domínio e documentação em uma situação de análise real). 
 
-Para poupar algumas linhas de código, após alguns filtros aplicados que julguei importantes criei o arquivo [teste_dados_ecommerce_tratado.csv](teste_dados_ecommerce_tratado.csv) para ser usado nas análises com as outras linguagens. 🙂
+Para poupar algumas linhas de código, após alguns filtros aplicados que julguei importantes durante o processo de análise em R, criei o arquivo [teste_dados_ecommerce_tratado.csv](teste_dados_ecommerce_tratado.csv) para ser usado nas análises com as outras linguagens. 🙂
