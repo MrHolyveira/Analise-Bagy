@@ -157,7 +157,7 @@ plotInsight3 <- ggplot(data = insight3) +
   theme(plot.title = element_text(hjust = 0.5, size = 24),axis.ticks.x = element_blank(),axis.text.x = element_blank(), axis.ticks.y = element_blank(),axis.text.y = element_blank())+
   labs(title="Insight 3: HeatMap dos países com maior volume de vendas",) 
 
-# Insight 3.1: Relação de produtos mais vendidos dentro do país com maior volume de vendas (Reino Unido).
+# Insight 3.1: Relação de produtos que tiveram os maiores valores de compra dentro do país com maior volume de vendas (Reino Unido).
 insight3.1 <- df %>% select(StockCode, Description,PurchaseValue, Country,Quantity)  %>% 
     filter( PurchaseValue > 0, Country == "United Kingdom") %>% 
     group_by(StockCode, Description, Country) %>% 
@@ -170,7 +170,7 @@ plotInsight3.1 <- ggplot(data = insight3.1, aes(x = reorder(Description, -Purcha
     geom_bar(stat='identity')+
     theme( plot.title = element_text(hjust = 0.5, size = 24),axis.text.y = element_text(size = 20, hjust = 1), , axis.text.x = element_text(angle = 80, size = 20, hjust = 1),panel.background = element_rect(fill = 'grey'),) +
     scale_fill_manual(values = pinkColors)+
-    labs(title="Insight 3.1: Os 10 Items mais vendidos no Reino Unido ",x ="Description", y = "PurchaseValue",fill="none") +
+    labs(title="Insight 3.1: Os 10 Items com maiores valores de compra no Reino Unido ",x ="Description", y = "PurchaseValue",fill="none") +
     guides(fill="none")
 
 
@@ -191,15 +191,24 @@ plotInsight3.2 <- ggplot(data = insight3.2, aes(x = reorder(Description, Purchas
     labs(title="Insight 3.2: Os 10 Items com menor valor de compra no Reino Unido ",x ="Description", y = "PurchaseValue",fill="none") +
     guides(fill="none")
 
+# Insight 3.3: Relação dos produtos mais comprados (Quantidade) dentro do país com maior volume de vendas (Reino Unido).
+insight3.3 <- df %>% select(StockCode, Description,PurchaseValue, Country,Quantity)  %>% 
+    filter( PurchaseValue > 0, Country == "United Kingdom") %>% 
+    group_by(StockCode, Description,Country) %>% 
+    summarise(PurchaseValue = sum(PurchaseValue), Quantity = sum(Quantity)) %>% 
+    arrange(desc(Quantity)) %>% 
+    head(10)
+insight3.3
+
 # Insight 3.3: Relação dos produtos menos comprados (Quantidade) dentro do país com maior volume de vendas (Reino Unido).
 # OBS: Existem cerca de 86 produtos que só venderam 1 unidade.
-insight3.3 <- df %>% select(StockCode, Description,PurchaseValue, Country,Quantity)  %>% 
+insight3.4 <- df %>% select(StockCode, Description,PurchaseValue, Country,Quantity)  %>% 
     filter( PurchaseValue > 0, Country == "United Kingdom") %>% 
     group_by(StockCode, Description,Country) %>% 
     summarise(PurchaseValue = sum(PurchaseValue), Quantity = sum(Quantity)) %>% 
     arrange(Quantity)  %>% 
     head(10)
-insight3.3
+insight3.4
 
 # Plot dos Insights em jpeg
 jpeg(file = "insight1.jpeg", width=1280, height=720)
