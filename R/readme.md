@@ -1,4 +1,4 @@
-# Descrição da resposta em R
+# Solução em R
 O projeto em R foi escrito com o auxilio do [Jupyter notebooks](https://jupyter.org/).
 
 
