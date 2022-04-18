@@ -1,10 +1,11 @@
+-- Tabela onde os dados provenientes do arquivo teste_dados_ecommerce_tratado.csv foram armazenados.
 SELECT  * FROM ec_data; 
 
 -- Insight 1: 10 lojas com os maiores faturamentos em pedidos
 -- Insight 1.1: Volume total de items de venda para as 10 lojas com maior faturamento em pedidos
 SELECT StoreId, 
-	sum(Quantity) as Quantity, 
-	sum(PurchaseValue) as PurchaseValue   
+	sum(Quantity) AS Quantity, 
+	sum(PurchaseValue) AS PurchaseValue   
 FROM ec_data
 WHERE PurchaseValue > 0 
 GROUP BY StoreId 
@@ -13,11 +14,11 @@ LIMIT 10;
 
 
 -- Insight 2: Ticket médio mensal dos pedidos
-SELECT STRFTIME('%Y/%m', InvoiceDate ) as monthYear, 
-	sum(PurchaseValue)/4334 as PurchaseValue  
+SELECT STRFTIME('%Y/%m', InvoiceDate ) AS monthYear, 
+	sum(PurchaseValue)/4334 AS PurchaseValue  
 	FROM ec_data 
 WHERE PurchaseValue > 0 
-	AND CustomerID is not 'NA'
+	AND CustomerID IS NOT 'NA'
 GROUP BY monthYear;
 
 -- Insight 2.1: Volume médio mensal de vendas
@@ -26,11 +27,11 @@ SELECT
 	AVG(PurchaseValue) 
 FROM ( 
 	SELECT  
-		STRFTIME('%Y/%m', InvoiceDate ) as yearMonth,  
-		sum(PurchaseValue) as PurchaseValue
+		STRFTIME('%Y/%m', InvoiceDate ) AS yearMonth,  
+		sum(PurchaseValue) AS PurchaseValue
 	FROM ec_data
 	WHERE PurchaseValue > 0 
-		AND CustomerID is not 'NA'
+		AND CustomerID IS NOT 'NA'
 	GROUP BY yearMonth
 );
 
@@ -38,7 +39,7 @@ FROM (
 -- Insight 3: Países com os maiores números de vendas.
 SELECT 
 	Country, 
-	sum(PurchaseValue) as PurchaseValue 
+	sum(PurchaseValue) AS PurchaseValue 
 	FROM ec_data
 WHERE  PurchaseValue > 0  
 GROUP BY Country 
@@ -48,9 +49,9 @@ ORDER BY PurchaseValue DESC;
 SELECT 
 	StockCode, 
 	Description, 
-	sum(PurchaseValue) as PurchaseValue, 
+	sum(PurchaseValue) AS PurchaseValue, 
 	Country,
-	sum(Quantity) as Quantity 
+	sum(Quantity) AS Quantity 
 FROM ec_data
 WHERE PurchaseValue > 0
 	AND Country == "United Kingdom" 
@@ -61,9 +62,9 @@ ORDER BY PurchaseValue DESC;
 SELECT 
 	StockCode, 
 	Description, 
-	sum(PurchaseValue) as PurchaseValue, 
+	sum(PurchaseValue) AS PurchaseValue, 
 	Country,
-	sum(Quantity) as Quantity
+	sum(Quantity) AS Quantity
 FROM ec_data
 WHERE PurchaseValue > 0
 	AND Country == "United Kingdom" 
@@ -75,9 +76,9 @@ ORDER BY PurchaseValue;
 SELECT 
 	StockCode, 
 	Description, 
-	sum(PurchaseValue) as PurchaseValue, 
+	sum(PurchaseValue) AS PurchaseValue, 
 	Country,
-	sum(Quantity) as Quantity
+	sum(Quantity) AS Quantity
 FROM ec_data
 WHERE PurchaseValue > 0
 	AND Country == "United Kingdom" 
